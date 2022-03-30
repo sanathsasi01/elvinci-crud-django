@@ -10,9 +10,11 @@ To activate the virtual environment
 
     env\Scripts\activate.bat
 
-Install Dajngo
+Install Django
 
     pip install django
+
+cd to the project directory
 
 Make the migrations
     
