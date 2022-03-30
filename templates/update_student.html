@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .btn {
+            border: none;
+            background-color: rgb(96, 233, 96);
+            padding: 0.5rem 2rem;
+            text-decoration: none;
+            color: white;
+            display: block;
+            margin: 2rem auto;
+            width: 8%;
+            text-align: center;
+        }
+        .update {
+            width: 10%;
+            background-color: green;
+        }
+        input {
+            outline: none;
+            width: 50%;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+        }
+        h2 {
+            text-align: center;
+        }
+        form,table {
+            width: 100%;
+            /* border: 1px solid red; */
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{% url 'update_student' student.id %}" method="post">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <h2>Instruments</h2>
+        <table>
+            {{form2.as_table}}
+        </table>
+        <button type="submit" class="btn update">Update</button>
+    </form>
+</body>
+</html>

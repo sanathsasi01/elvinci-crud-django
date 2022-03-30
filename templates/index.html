@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        .btn {
+            border: none;
+            background-color: rgb(80, 154, 80);
+            padding: 0.5rem 2rem;
+            text-decoration: none;
+            color: white;
+            display: block;
+            margin: auto;
+            width: 8%;
+            text-align: center;
+        }
+        .update {
+            width: 40%;
+            background-color: green;
+        }
+        .delete {
+            width: 40%;
+            background-color: red;
+        }
+        li {
+            color: green;
+            padding: 1rem 2rem;
+            border: 1px solid green;
+            list-style: none;
+            display: block;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+        <ul class="messages">
+            <!-- <li>ds</li> -->
+            {% for message in messages %}
+                <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <table>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Mobile Number</th>
+          <th>Instrument Name</th>
+          <th>Instrument Description</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>  
+        {% for student in students %}
+            <tr>
+            <td>{{student.first_name}}</td>
+            <td>{{student.last_name}}</td>
+            <td>{{student.email}}</td>
+            <td>{{student.mobile_no}}</td>
+            <td>{{student.instruments.name}}</td>
+            <td>{{student.instruments.description}}</td>
+            <td><a href=" {% url 'update_student' student.id %} " class="btn update">Update</a></td>
+            <td><a href=" {% url 'delete_student' student.id %} " class="btn delete">Delete</a></td>
+            </tr>
+        {% endfor %}
+      </table>
+
+    <br>
+    <a href=" {% url 'add_student' %} " class="btn"> Add student </a>
+</body>
+</html>
